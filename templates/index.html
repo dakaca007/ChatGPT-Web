@@ -886,8 +886,8 @@
     }
     let selectedChatId = generateUUID();
     let config = {"userId": null, "password": null, "apiKey": null, "chat_context_number": 5,
-        "model_config": {"model": "gpt-3.5-turbo", "temperature": 0.9, "max_tokens": 2000}};
-    let model_config = {"model": "gpt-3.5-turbo", "temperature": 0.9, "max_tokens": 2000};
+        "model_config": {"model": "gpt-4o-mini", "temperature": 0.9, "max_tokens": 128000}};
+    let model_config = {"model": "gpt-4o-mini", "temperature": 0.9, "max_tokens": 128000};
     let chats = [generateChatInfo(selectedChatId)];
     let messages_of_chats = {[selectedChatId]: []};
     if (localStorage.getItem("chats") !== null) {
@@ -1347,8 +1347,8 @@
         message_contexts.push({"role": "system", "content": "简要总结一下你和用户的对话，用作后续的上下文提示 prompt，控制在 50 字以内", "send_time": get_time_str(new Date()), "display_time": false})
         let request_data = {
                 "messages": message_contexts,
-                "max_tokens": 2000,
-                "model": "gpt-3.5-turbo",
+                "max_tokens": 128000,
+                "model": "gpt-4o-mini",
                 "temperature": 0.9,
                 "stream": true,
                 "continues_chat": true,
