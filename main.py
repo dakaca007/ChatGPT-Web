@@ -536,7 +536,7 @@ def get_balance(apikey):
         head = "### 通用api key  \n"
         apikey = API_KEY
 
-    subscription_url = "https://gptkey.nxsir.cn/v1/dashboard/billing/subscription"
+    subscription_url = "https://api.chatanywhere.tech/v1/dashboard/billing/subscription"
     headers = {
         "Authorization": "Bearer " + apikey,
         "Content-Type": "application/json"
@@ -552,7 +552,7 @@ def get_balance(apikey):
     start_date = (datetime.datetime.now() - datetime.timedelta(days=99)).strftime("%Y-%m-%d")
     # end_date设置为今天日期+1
     end_date = (datetime.datetime.now() + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
-    billing_url = f"https://gptkey.nxsir.cn/v1/dashboard/billing/usage?start_date={start_date}&end_date={end_date}"
+    billing_url = f"https://api.chatanywhere.tech/v1/dashboard/billing/usage?start_date={start_date}&end_date={end_date}"
     billing_response = requests.get(billing_url, headers=headers)
     if billing_response.status_code == 200:
         data = billing_response.json()
