@@ -162,7 +162,7 @@ def handle_messages_get_response(message, apikey, message_history, have_chat_con
 
 
 def get_response_stream_generate_from_ChatGPT_API(message_context, apikey, message_history,
-                                                  model="gpt-3.5-turbo-16k", temperature=0.9, presence_penalty=0,
+                                                  model="gpt-4o-mini", temperature=0.9, presence_penalty=0,
                                                   max_tokens=16000):
     """
     从ChatGPT API获取回复
@@ -190,7 +190,7 @@ def get_response_stream_generate_from_ChatGPT_API(message_context, apikey, messa
         "stream": True
     }
     print("开始流式请求")
-    url = "https://gptkey.nxsir.cn/v1/chat/completions"
+    url = "https://api.chatanywhere.tech"
     # 请求接收流式数据 动态print
     try:
         response = requests.request("POST", url, headers=header, json=data, stream=True)
