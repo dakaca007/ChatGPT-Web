@@ -56,7 +56,7 @@ project_info = "## ChatGPT 网页版    \n" \
 
 
 def get_response_from_ChatGPT_API(message_context, apikey,
-                                  model="gpt-3.5-turbo-16k", temperature=0.9, presence_penalty=0, max_tokens=16000):
+                                  model="gpt-4o-mini", temperature=0.9, presence_penalty=0, max_tokens=128000):
     """
     从ChatGPT API获取回复
     :param message_context: 上下文
@@ -80,7 +80,7 @@ def get_response_from_ChatGPT_API(message_context, apikey,
         "presence_penalty": presence_penalty,
         "max_tokens": max_tokens
     }
-    url = "https://gptkey.nxsir.cn/v1/chat/completions"
+    url = "https://api.chatanywhere.tech"
 
     try:
         response = requests.post(url, headers=header, data=json.dumps(data))
