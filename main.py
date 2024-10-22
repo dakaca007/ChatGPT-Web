@@ -2,7 +2,8 @@ from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
 
 app = Flask(__name__)
-socketio = SocketIO(app)
+# 指定使用 eventlet
+socketio = SocketIO(app, async_mode='eventlet')
 
 # 存储聊天消息的列表 (示例)
 messages = []
@@ -22,4 +23,5 @@ def handle_get_messages():
     emit('receive_message', {'messages': messages})
 
 if __name__ == '__main__':
+    # 使用 eventlet 启动 Flask 应用
     socketio.run(app, host='0.0.0.0', port=80, use_reloader=True)
