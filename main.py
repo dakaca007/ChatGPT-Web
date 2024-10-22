@@ -1,25 +1,25 @@
-from flask import Flask, request, jsonify
+from flask import Flask, render_template
+from flask_socketio import SocketIO, emit
 
 app = Flask(__name__)
+socketio = SocketIO(app)
 
 # 存储聊天消息的列表 (示例)
 messages = []
 
-@app.route('/messages', methods=['GET'])
-def get_messages():
-    """返回所有消息的列表"""
-    return jsonify(messages)
+@app.route('/')
+def index():
+    return render_template('index.html')
 
-@app.route('/messages', methods=['POST'])
-def post_message():
-    """接收新消息并存储"""
-    data = request.json
-    if 'message' in data:
-        message = data['message']
-        messages.append(message)  # 将消息存储到列表中
-        return jsonify({'status': 'success', 'message': message}), 201
-    else:
-        return jsonify({'status': 'error', 'message': 'Invalid input'}), 400
+@socketio.on('send_message')
+def handle_message(data):
+    message = data['message']
+    messages.append(message)  # 将消息存储到列表中
+    emit('receive_message', {'message': message}, broadcast=True)
+
+@socketio.on('get_messages')
+def handle_get_messages():
+    emit('receive_message', {'messages': messages})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+    socketio.run(app, host='0.0.0.0', port=80)
