@@ -886,8 +886,8 @@
     }
     let selectedChatId = generateUUID();
     let config = {"userId": null, "password": null, "apiKey": null, "chat_context_number": 5,
-        "model_config": {"model": "gpt-4o-mini", "temperature": 0.9, "max_tokens": 128000}};
-    let model_config = {"model": "gpt-4o-mini", "temperature": 0.9, "max_tokens": 128000};
+        "model_config": {"model": "deepseek-r1", "temperature": 0.9, "max_tokens": 128000}};
+    let model_config = {"model": "deepseek-r1", "temperature": 0.9, "max_tokens": 128000};
     let chats = [generateChatInfo(selectedChatId)];
     let messages_of_chats = {[selectedChatId]: []};
     if (localStorage.getItem("chats") !== null) {
@@ -1239,7 +1239,7 @@
         let request_data = {
                 "messages": message_contexts,
                 "max_tokens": config.model_config.max_tokens || 128000,
-                "model": config.model_config.model || "gpt-4o-mini",
+                "model": config.model_config.model || "deepseek-r1",
                 "temperature": config.model_config.temperature || 0.9,
                 "stream": true,
                 "continues_chat": true,
@@ -1348,7 +1348,7 @@
         let request_data = {
                 "messages": message_contexts,
                 "max_tokens": 128000,
-                "model": "gpt-4o-mini",
+                "model": "deepseek-r1",
                 "temperature": 0.9,
                 "stream": true,
                 "continues_chat": true,
